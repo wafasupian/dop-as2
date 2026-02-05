@@ -13,5 +13,4 @@ In GitHub, repository refers to a storage space where a project is kept. A repos
 
 ### Purpose of Repository
 
-The purpose of a repository is to store, organize, and manage a project’s files in one place while keeping track of all changes made over time. It allows developers to save different versions of their work, collaborate with others without overwriting files, and easily share or back up their projects. Repositories also make it easier to review changes, fix mistakes, and maintain a clear history of how a project develops
-
+The purpose of a repository is to upload Assignment 1 of Development Operations module and to store all related files in one place. It also serves as a version control platform to track updates, manage changes, and ensures that the latest version of assignment 1 is always available if any modifications are made.
