@@ -8,9 +8,9 @@
         <div class="space-y-6">
             @foreach ($posts as $post)
                 <article class="flex gap-4 border-b pb-4">
-                    <img src="{{ asset('images/placeholder-150x150.png') }}" alt="Post Image" class="w-32 h-32 object-cover rounded">
+                    <img src="{{ asset('images/cartoon1.png') }}" alt="Post Image" class="w-32 h-32 object-cover rounded">
                     <div>
-                        <h3 class="text-lg font-semibold"><a href="{{ route('posts.show', $post->id) }} class="hover:underline">{{ $post->title }}</a></h3>
+                        <h3 class="text-lg font-semibold"><a href="{{ route('posts.show', $post) }} class="hover:underline">{{ $post->title }}</a></h3>
                         <p class="text-gray-600">{{ substr($post->text, 0, 150) }}</p>
                     </div>
                 </article>
