@@ -8,7 +8,7 @@
 </head>
 <body class="bg-gray-100">
 <header class="bg-white shadow-md p-4 flex justify-between items-center container mx-auto mt-6 rounded-lg">
-    <a href="{{ route('home') }}" class="text-2xl font-bold text-gray-800">My Blog</a>
+    <a href="{{ route('home') }}" class="text-2xl font-bold text-gray-800">Cartoon</a>
     <nav>
         <ul class="flex space-x-4">
             <li><a href="{{ route('about') }}" class="text-gray-600 hover:text-gray-800">About Us</a></li>

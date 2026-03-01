@@ -1,30 +1,70 @@
-@extends('layouts.blog')
- 
+@extends('layouts-blog')
+
 @section('content')
-<main class="container mx-auto mt-6 flex gap-6">
-    <!-- Blog Posts Section -->
-    <section class="w-3/4 bg-white p-6 shadow-md rounded-lg">
-        <h2 class="text-xl font-semibold mb-4">Latest Posts</h2>
-        <div class="space-y-6">
-            @foreach ($posts as $post)
-                <article class="flex gap-4 border-b pb-4">
-                    <img src="{{ asset('images/cartoon1.png') }}" alt="Post Image" class="w-32 h-32 object-cover rounded">
-                    <div>
-                        <h3 class="text-lg font-semibold"><a href="{{ route('posts.show', $post) }} class="hover:underline">{{ $post->title }}</a></h3>
-                        <p class="text-gray-600">{{ substr($post->text, 0, 150) }}</p>
-                    </div>
-                </article>
-            @endforeach
-        </div>
-    </section>
-    <!-- Sidebar Section -->
-    <aside class="w-1/4 bg-white p-6 shadow-md rounded-lg">
-        <h2 class="text-xl font-semibold mb-4">Categories</h2>
-        <ul class="space-y-2">
-            @foreach($categories as $category)
-            <li><a href="{{ route('home', ['category_id' => $category->id]) }}" class="text-gray-600 hover:text-gray-800">{{ $category->name }}</a></li>
-            @endforeach
-        </ul>
-    </aside>
-</main>
+<div class="max-w-5xl mx-auto px-4 py-8">
+
+    <!-- Page Title -->
+    <h1 class="text-2xl font-bold mb-6">Latest Posts</h1>
+
+    <!-- Category Filter -->
+    <div class="flex flex-wrap gap-2 mb-6">
+        <a href="{{ route('home') }}"
+           class="px-4 py-2 rounded border {{ request('category_id') ? 'bg-gray-100' : 'bg-black text-white' }}">
+            All
+        </a>
+
+        @foreach($categories as $category)
+            <a href="{{ route('home', ['category_id' => $category->id]) }}"
+               class="px-4 py-2 rounded border
+               {{ request('category_id') == $category->id ? 'bg-black text-white' : 'bg-gray-100' }}">
+                {{ $category->name ?? ('Category '.$category->id) }}
+            </a>
+        @endforeach
+    </div>
+
+    <!-- Posts List -->
+    <div class="bg-white rounded-xl shadow divide-y">
+
+        @forelse($posts as $post)
+            <div class="p-6">
+
+                <!-- Category + Date -->
+                <p class="text-sm text-gray-500 mb-1">
+                    {{ $post->category?->name ?? 'Uncategorized' }}
+                    •
+                    {{ $post->created_at->format('d M Y') }}
+                </p>
+
+                <!-- Title -->
+                <h2 class="text-xl font-bold mb-2">
+                    {{ $post->title }}
+                </h2>
+
+                <!-- Subtitle (⭐ REQUIRED CUSTOM FIELD) -->
+                @if($post->subtitle)
+                    <p class="text-gray-600 mb-3">
+                        {{ $post->subtitle }}
+                    </p>
+                @endif
+
+                <!-- Preview Text -->
+                <p class="text-gray-700 mb-4">
+                    {{ \Illuminate\Support\Str::limit($post->text, 120) }}
+                </p>
+
+                <!-- Read More -->
+                <a href="{{ route('posts.show', $post) }}"
+                   class="text-black font-semibold hover:underline">
+                    Read more →
+                </a>
+
+            </div>
+        @empty
+            <div class="p-6 text-center text-gray-500">
+                No posts available.
+            </div>
+        @endforelse
+
+    </div>
+</div>
 @endsection
