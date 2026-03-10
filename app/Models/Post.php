@@ -11,9 +11,10 @@ class Post extends Model
         'subtitle',
         'text',
         'category_id',
+        'image',
     ];
 
-    // ✅ THIS FIXES YOUR ERROR
+    
     public function category()
     {
         return $this->belongsTo(Category::class);
