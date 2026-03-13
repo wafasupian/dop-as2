@@ -105,6 +105,10 @@
                 {{ __('Dashboard') }}
             </x-responsive-nav-link>
 
+            <x-nav-link :href="route('categories.index')" :active="request()->routeIs('categories.*')">
+                {{ __('Manage Categories') }}
+            </x-nav-link>
+
             <x-responsive-nav-link :href="route('posts.index')" :active="request()->routeIs('posts.*')">
                 {{ __('Manage Posts') }}
             </x-responsive-nav-link>
